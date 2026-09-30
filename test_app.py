@@ -20,6 +20,13 @@ def test_get_product_bad_format():
     assert resp.status_code == 400
 
 
+def test_list_products():
+    client = app.test_client()
+    resp = client.get("/products")
+    assert resp.status_code == 200
+    assert len(resp.get_json()) == 3
+
+
 if __name__ == "__main__":
     test_get_product_success()
     test_get_product_not_found()
